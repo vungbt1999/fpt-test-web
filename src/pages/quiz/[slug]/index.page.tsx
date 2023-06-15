@@ -1,11 +1,10 @@
 import { getApiClient } from '@/config/graphql-api';
 import { notFound } from '@/utils/common';
+import { transformQuiz } from '@/utils/transforms';
 import { GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 import FormQuizContent from './components/form-quiz-content';
 import FormRegisterTest from './components/form-register-quiz';
 import { QuizPerformPageUtils } from './utils';
-import { transformQuiz } from '@/utils/transforms';
 
 type Props = {
   quiz: {
@@ -17,7 +16,6 @@ type Props = {
 };
 
 export default function QuizPerformPage({ quiz }: Props) {
-  const router = useRouter();
   const { onStartPerformTest, onSubmitQuiz } = QuizPerformPageUtils();
   return (
     <>

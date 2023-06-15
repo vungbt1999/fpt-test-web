@@ -1,6 +1,8 @@
 import { ApiClientProvider } from '@/config/graphql-api/provider';
 import type { AppProps } from 'next/app';
 import '../styles/globals.css';
+import SEOMeta from '@/components/seo/SEOMeta';
+import { Fragment } from 'react';
 
 type MyAppProps = {
   pageProps: AppProps['pageProps'];
@@ -9,7 +11,10 @@ type MyAppProps = {
 function MyApp({ Component, pageProps }: MyAppProps) {
   return (
     <ApiClientProvider>
-      <Component {...pageProps} />
+      <Fragment>
+        <SEOMeta title="Test System" />
+        <Component {...pageProps} />
+      </Fragment>
     </ApiClientProvider>
   );
 }
