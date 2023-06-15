@@ -1,21 +1,30 @@
 import { Button, InputForm } from '@/components/common';
-import { QuestionItem } from '@/components/question';
+import { QuestionItem, WrapperBlock } from '@/components/question';
+import { useApiClient } from '@/config/graphql-api/provider';
 import { FastField, Form, Formik } from 'formik';
 import Image from 'next/image';
 import React from 'react';
+import * as Yup from 'yup';
 
 type FormQuizContentProps = {
   initialValues: any;
-  validationSchema: any;
   questions: any[];
+  quizName: string;
+  onSubmitQuiz: (values: any) => void;
 };
 export default function FormQuizContent({
   initialValues,
-  validationSchema,
-  questions
+  questions,
+  quizName,
+  onSubmitQuiz
 }: FormQuizContentProps) {
+  // validation form
+  const validation = Yup.object().shape({
+    ...getSchema(initialValues)
+  });
+
   return (
-    <div className="max-w-[90vw] w-[640px] mx-auto">
+    <div className="max-w-[90vw] w-[640px] mx-auto pb-5">
       <Image
         src="/assets/login-background-2.jpg"
         alt="background-test"
@@ -23,12 +32,12 @@ export default function FormQuizContent({
         height={160}
         className="max-h-40 object-cover w-[90vw] rounded-lg mt-3 border border-solid border-gray-300"
       />
+
+      <WrapperBlock hint="Biểu thị câu hỏi bắt buộc" showLine className="mt-3">
+        <h1 className="text-4xl font-bold">{quizName}</h1>
+      </WrapperBlock>
       <div>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={(values: any) => console.log(values)}
-        >
+        <Formik initialValues={initialValues} validationSchema={validation} onSubmit={onSubmitQuiz}>
           {() => (
             <Form>
               {/** Main Content - List Question */}
@@ -58,3 +67,12 @@ export default function FormQuizContent({
     </div>
   );
 }
+
+const getSchema = (initialValues: any) => {
+  const keys = Object.keys(initialValues);
+  const validation: { [key: string]: any } = {};
+  keys.map((item) => {
+    validation[item] = Yup.string().required('Tên không được để trống.');
+  });
+  return validation;
+};

@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import FormQuizContent from './components/form-quiz-content';
 import FormRegisterTest from './components/form-register-quiz';
 import { QuizPerformPageUtils } from './utils';
+import { transformQuiz } from '@/utils/transforms';
 
 type Props = {
   quiz: {
@@ -12,17 +13,16 @@ type Props = {
     username: string;
     quizName: string;
     questions: any;
-  };
+  } & ReturnType<typeof transformQuiz>;
 };
 
 export default function QuizPerformPage({ quiz }: Props) {
   const router = useRouter();
-  const { onStartPerformTest } = QuizPerformPageUtils();
-
+  const { onStartPerformTest, onSubmitQuiz } = QuizPerformPageUtils();
   return (
     <>
-      {quiz ? (
-        <FormQuizContent initialValues={{}} validationSchema={{}} questions={[]} />
+      {quiz && quiz.questions ? (
+        <FormQuizContent {...quiz} onSubmitQuiz={onSubmitQuiz} />
       ) : (
         <FormRegisterTest onSubmitName={onStartPerformTest} />
       )}
@@ -38,9 +38,11 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     if (tokenVerify) {
       const apiClient = getApiClient();
       const resultRes = await apiClient.getReusltByToken({ data: { token: tokenVerify } });
+
       const resultData = resultRes?.getResultByToken;
       if (resultData && Object.keys(resultData).length > 0) {
-        data = { ...resultData };
+        const dataTransform = transformQuiz(resultData);
+        data = { ...dataTransform };
       }
     }
     return { props: { quiz: data } };

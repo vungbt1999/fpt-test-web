@@ -1,0 +1,7 @@
+
+mutation submitQuiz($data: SubmitQuizInput!) {
+  submitQuiz(data: $data) {
+    score
+    totalQuestion
+  }
+}
