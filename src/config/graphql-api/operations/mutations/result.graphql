@@ -1,0 +1,5 @@
+mutation createNewResult($data: CreateNewResultInput!) {
+  createNewResult(data: $data) {
+    token
+  }
+}

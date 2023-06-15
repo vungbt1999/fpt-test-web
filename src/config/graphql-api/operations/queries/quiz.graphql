@@ -1,0 +1,7 @@
+query getReusltByToken($data: GetResultByTokenInput!) {
+  getResultByToken(data: $data) {
+    username
+    quizName
+    questions
+  }
+}
