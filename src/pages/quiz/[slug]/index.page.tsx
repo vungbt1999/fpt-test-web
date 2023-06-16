@@ -36,7 +36,6 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     if (tokenVerify) {
       const apiClient = getApiClient();
       const resultRes = await apiClient.getReusltByToken({ data: { token: tokenVerify } });
-
       const resultData = resultRes?.getResultByToken;
       if (resultData && Object.keys(resultData).length > 0) {
         const dataTransform = transformQuiz(resultData);

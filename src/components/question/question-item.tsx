@@ -2,18 +2,19 @@ import React from 'react';
 import { WrapperBlock } from './wrapper-block';
 
 type QuestionItemProps = {
-  name: string;
+  name?: string;
+  question?: string;
   options: any[];
   className?: string;
   input?: JSX.Element;
 };
 
-export function QuestionItem({ name, options, className, input }: QuestionItemProps) {
+export function QuestionItem({ name, options, className, input, question }: QuestionItemProps) {
   return (
     <WrapperBlock className={className}>
       <>
         <p className="text-xl font-medium">
-          {name} <span className="text-red-600">*</span>
+          {question || name} <span className="text-red-600">*</span>
         </p>
         <div className="mt-3">
           {options.map((item, index) => {
