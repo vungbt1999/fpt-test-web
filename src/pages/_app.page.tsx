@@ -1,4 +1,4 @@
-import { ApiClientProvider } from '@/config/graphql-api/provider';
+import { ApiClientProvider } from '@/utils/graphql-api/provider';
 import type { AppProps } from 'next/app';
 import '../styles/globals.css';
 import SEOMeta from '@/components/seo/SEOMeta';

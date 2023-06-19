@@ -1,5 +1,4 @@
-import { ResultDetailResolver } from '@/config/graphql-api/generated';
-import * as Yup from 'yup';
+import { ResultDetailResolver } from '@/utils/graphql-api/generated';
 
 export const transformQuiz = (data: ResultDetailResolver) => {
   const questions: any[] = data?.questions || [];

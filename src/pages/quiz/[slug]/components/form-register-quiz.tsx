@@ -44,15 +44,9 @@ export default function FormRegisterQuiz({ onSubmitName }: FormRegisterTestProps
         </div>
       </div>
       <div
-        className="hidden md:block col-span-6"
+        className="hidden md:block col-span-6 relative bg-cover bg-right text-white align-middle min-h-full"
         style={{
-          position: 'relative',
-          backgroundImage: 'url(/assets/login-background-2.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'right',
-          color: '#fff',
-          verticalAlign: 'middle',
-          minHeight: '100%'
+          backgroundImage: 'url(/assets/login-background-2.jpg)'
         }}
       ></div>
     </div>

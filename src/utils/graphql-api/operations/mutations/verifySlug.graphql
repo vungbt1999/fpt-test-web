@@ -1,0 +1,3 @@
+query verifySlug($data: VerifySlugInput!) {
+  verifySlug(data: $data)
+}

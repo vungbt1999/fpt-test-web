@@ -1,4 +1,4 @@
-import { useApiClient } from '@/config/graphql-api/provider';
+import { useApiClient } from '@/utils/graphql-api/provider';
 import { notFound } from '@/utils/common';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';

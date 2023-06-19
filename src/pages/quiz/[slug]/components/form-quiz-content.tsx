@@ -1,6 +1,5 @@
 import { Button, InputForm } from '@/components/common';
 import { QuestionItem, WrapperBlock } from '@/components/question';
-import { useApiClient } from '@/config/graphql-api/provider';
 import { FastField, Form, Formik } from 'formik';
 import Image from 'next/image';
 import React from 'react';
@@ -72,7 +71,7 @@ const getSchema = (initialValues: any) => {
   const keys = Object.keys(initialValues);
   const validation: { [key: string]: any } = {};
   keys.map((item) => {
-    validation[item] = Yup.string().required('Tên không được để trống.');
+    validation[item] = Yup.string().required('Câu trả lời không được để trống.');
   });
   return validation;
 };

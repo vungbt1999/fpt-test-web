@@ -1,4 +1,4 @@
-query getReusltByToken($data: GetResultByTokenInput!) {
+query getResultByToken($data: GetResultByTokenInput!) {
   getResultByToken(data: $data) {
     username
     quizName
